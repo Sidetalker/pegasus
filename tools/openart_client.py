@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -68,7 +69,8 @@ def write_metadata(output_dir: Path, response: requests.Response) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
     timestamp = response.headers.get("date", "response")
     safe_name = timestamp.replace(" ", "_").replace(":", "-")
-    output_path = output_dir / f"openart_{safe_name}.json"
+    unique_suffix = uuid.uuid4().hex[:8]
+    output_path = output_dir / f"openart_{safe_name}_{unique_suffix}.json"
     output_path.write_text(json.dumps(response.json(), indent=2))
     return output_path
 
