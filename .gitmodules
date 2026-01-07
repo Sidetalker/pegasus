@@ -1,0 +1,3 @@
+[submodule "tools/hashlips_art_engine"]
+	path = tools/hashlips_art_engine
+	url = git@github.com:HashLips/hashlips_art_engine.git
